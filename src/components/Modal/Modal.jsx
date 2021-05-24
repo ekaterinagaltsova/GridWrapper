@@ -25,7 +25,13 @@ const Modal = ({
           <form className="form" action="/table">
             <label htmlFor="colCount">
               Column
-              <input type="number" name="colCount" />
+              <input
+                type="number"
+                min="1"
+                max="20"
+                name="colCount"
+                className="input"
+              />
             </label>
 
             <label htmlFor="rowCount">
@@ -33,6 +39,9 @@ const Modal = ({
               <input
                 type="number"
                 name="rowCount"
+                min="1"
+                max="20"
+                className="input"
               />
             </label>
             <button
