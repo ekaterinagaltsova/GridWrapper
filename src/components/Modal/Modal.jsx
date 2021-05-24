@@ -21,7 +21,7 @@ const Modal = ({
           </button>
         </div>
         <div className="inner">
-          <p>Задайте параметры таблицы</p>
+          <p>Set table parameters</p>
           <form className="form" action="/table">
             <label htmlFor="colCount">
               Column

@@ -21,7 +21,7 @@ const MainPage = () => {
         className="button"
         onClick={handleClick}
       >
-        Создать таблицу
+        Create table
       </button>
       {openModal && (
         <Modal
