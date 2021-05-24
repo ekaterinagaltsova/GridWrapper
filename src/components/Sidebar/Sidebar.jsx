@@ -1,35 +1,22 @@
-/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { memo, useState } from 'react';
-// import { Draggable } from 'react-beautiful-dnd';
+import { arrayOf } from 'prop-types';
 
 import './style.scss';
 
-import Item from '../Item';
-
-const visualElements = [
-  {
-    id: 1,
-    name: 'Text',
-    text: 'Text',
-  },
-  {
-    id: 2,
-    name: 'Button',
-    text: 'Button',
-  },
-  {
-    id: 3,
-    name: 'Image',
-    text: 'Image',
-  },
-];
-
-const Sidebar = () => {
+const Sidebar = ({
+  visualElements,
+}) => {
   const [open, setOpen] = useState(false);
   const handleClick = () => {
     setOpen(!open);
   };
+
+  function dragStart(e) {
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.dropEffect = 'move';
+    e.dataTransfer.setData('text/plain', `${e.target.id}`);
+  }
 
   return (
     <section className="menu">
@@ -46,33 +33,24 @@ const Sidebar = () => {
               Visual Elements
             </li>
             {open && (
-              <ul className="sub-nav">
+              <ul
+                className="sub-nav"
+              >
                 {visualElements && visualElements.map(
                   (item) => (
-                    <Item element={item} key={item.id} />
+                    <li
+                      className="draggable"
+                      id={item.id}
+                      draggable
+                      key={item.id}
+                      onDragStart={dragStart}
+                    >
+                      {item.text}
+                    </li>
                   ),
                 )}
               </ul>
             )}
-            {/* {open && (
-              <ul className="sub-nav">
-                {visualElements && visualElements.map(
-                  (item, index) => (
-                    <Draggable key={item.id} draggableId="characters" index={index}>
-                      {(provided) => {
-                        <div
-                          innerRef={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                        >
-                          {item.name}
-                        </div>;
-                      }}
-                    </Draggable>
-                  ),
-                )}
-              </ul>
-            )} */}
           </ul>
         </nav>
       </aside>
@@ -80,7 +58,9 @@ const Sidebar = () => {
   );
 };
 
-Sidebar.propTypes = {};
+Sidebar.propTypes = {
+  visualElements: arrayOf.isRequired,
+};
 
 Sidebar.defaultProps = {};
 

@@ -7,6 +7,24 @@ import './style.scss';
 import Sidebar from '../../components/Sidebar';
 import Table from '../../components/Table';
 
+const visualElements = [
+  {
+    id: 1,
+    name: 'Text',
+    text: 'Text',
+  },
+  {
+    id: 2,
+    name: 'Button',
+    text: 'Button',
+  },
+  {
+    id: 3,
+    name: 'Image',
+    text: 'Image',
+  },
+];
+
 const TablePage = ({
   location: {
     search,
@@ -19,8 +37,8 @@ const TablePage = ({
 
   return (
     <div className="container">
-      <Sidebar />
-      <Table col={colCount} row={rowCount} />
+      <Sidebar visualElements={visualElements} />
+      <Table col={colCount} row={rowCount} visualElements={visualElements} />
     </div>
   );
 };
