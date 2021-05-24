@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
-import { arrayOf, shape, string } from 'prop-types';
+import { string } from 'prop-types';
 
 import Cell from '../Cell';
 
@@ -9,7 +9,6 @@ import './style.scss';
 const Table = ({
   col,
   row,
-  visualElements,
 }) => {
   const Grid = styled('section')`
   display: grid;
@@ -25,7 +24,7 @@ const Table = ({
     const content = [];
     for (let i = 0; i < cellCount; i += 1) {
       content.push(
-        <Cell key={i} visualElements={visualElements} />,
+        <Cell key={i} />,
       );
     }
     return content;
@@ -43,7 +42,6 @@ const Table = ({
 Table.propTypes = {
   col: string.isRequired,
   row: string.isRequired,
-  visualElements: arrayOf(shape({})).isRequired,
 };
 
 export default memo(Table);

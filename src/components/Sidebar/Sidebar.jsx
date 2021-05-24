@@ -1,12 +1,32 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { memo, useState } from 'react';
-import { arrayOf, shape } from 'prop-types';
 
 import './style.scss';
 
-const Sidebar = ({
-  visualElements,
-}) => {
+const visualElements = [
+  {
+    id: 1,
+    name: 'Text',
+    text: 'Text',
+  },
+  {
+    id: 2,
+    name: 'Button',
+    text: 'Button',
+  },
+  {
+    id: 3,
+    name: 'Image',
+    text: 'Picture',
+  },
+  {
+    id: 4,
+    name: 'Video',
+    text: 'videooo',
+  },
+];
+
+const Sidebar = () => {
   const [open, setOpen] = useState(false);
   const handleClick = () => {
     setOpen(!open);
@@ -15,7 +35,7 @@ const Sidebar = ({
   function dragStart(e) {
     e.dataTransfer.effectAllowed = 'move';
     e.dataTransfer.dropEffect = 'move';
-    e.dataTransfer.setData('text/plain', `${e.target.id}`);
+    e.dataTransfer.setData('text/plain', `${e.target.attributes.text.nodeValue}`);
   }
 
   return (
@@ -41,6 +61,7 @@ const Sidebar = ({
                     <li
                       className="draggable"
                       id={item.id}
+                      text={item.text}
                       draggable
                       key={item.id}
                       onDragStart={dragStart}
@@ -58,9 +79,7 @@ const Sidebar = ({
   );
 };
 
-Sidebar.propTypes = {
-  visualElements: arrayOf(shape({})).isRequired,
-};
+Sidebar.propTypes = {};
 
 Sidebar.defaultProps = {};
 

@@ -1,17 +1,14 @@
-import React, { memo, useState, useEffect } from 'react';
-import { arrayOf, shape } from 'prop-types';
+import React, { memo, useState } from 'react';
 import styled from 'styled-components';
 
-const Cell = ({
-  visualElements,
-}) => {
+const Cell = () => {
   const Item = styled('div')`
    display: flex;
    align-items: center;
    justify-content: center;
  border: 1px solid grey;
  `;
-  const [id, setId] = useState(null);
+
   const [text, setText] = useState('');
   function dragOver(event) {
     event.preventDefault();
@@ -21,14 +18,9 @@ const Cell = ({
   function drop(event) {
     event.stopPropagation();
     event.preventDefault();
-    const dragId = event.dataTransfer.getData('text/plain');
-    setId(dragId);
+    const dragText = event.dataTransfer.getData('text/plain');
+    setText(dragText);
   }
-
-  useEffect(() => {
-    const currentText = visualElements.filter((elem) => elem.id === Number(id));
-    setText(currentText.length > 0 ? currentText[0].text : '');
-  }, [id]);
 
   return (
     <Item
@@ -41,8 +33,6 @@ const Cell = ({
   );
 };
 
-Cell.propTypes = {
-  visualElements: arrayOf(shape({})).isRequired,
-};
+Cell.propTypes = {};
 
 export default memo(Cell);
