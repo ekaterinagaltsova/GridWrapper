@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { memo, useState } from 'react';
-import { arrayOf } from 'prop-types';
+import { arrayOf, shape } from 'prop-types';
 
 import './style.scss';
 
@@ -45,7 +45,7 @@ const Sidebar = ({
                       key={item.id}
                       onDragStart={dragStart}
                     >
-                      {item.text}
+                      {item.name}
                     </li>
                   ),
                 )}
@@ -59,7 +59,7 @@ const Sidebar = ({
 };
 
 Sidebar.propTypes = {
-  visualElements: arrayOf.isRequired,
+  visualElements: arrayOf(shape({})).isRequired,
 };
 
 Sidebar.defaultProps = {};

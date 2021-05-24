@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
-import { arrayOf, string } from 'prop-types';
+import { arrayOf, shape, string } from 'prop-types';
 
 import Cell from '../Cell';
 
@@ -25,7 +25,7 @@ const Table = ({
     const content = [];
     for (let i = 0; i < cellCount; i += 1) {
       content.push(
-        <Cell visualElements={visualElements} />,
+        <Cell key={i} visualElements={visualElements} />,
       );
     }
     return content;
@@ -43,7 +43,7 @@ const Table = ({
 Table.propTypes = {
   col: string.isRequired,
   row: string.isRequired,
-  visualElements: arrayOf.isRequired,
+  visualElements: arrayOf(shape({})).isRequired,
 };
 
 export default memo(Table);

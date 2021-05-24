@@ -1,5 +1,5 @@
 import React, { memo, useState, useEffect } from 'react';
-import { arrayOf } from 'prop-types';
+import { arrayOf, shape } from 'prop-types';
 import styled from 'styled-components';
 
 const Cell = ({
@@ -21,7 +21,6 @@ const Cell = ({
   function drop(event) {
     event.stopPropagation();
     event.preventDefault();
-    event.target.classList.remove('droppable-hover');
     const dragId = event.dataTransfer.getData('text/plain');
     setId(dragId);
   }
@@ -43,7 +42,7 @@ const Cell = ({
 };
 
 Cell.propTypes = {
-  visualElements: arrayOf.isRequired,
+  visualElements: arrayOf(shape({})).isRequired,
 };
 
 export default memo(Cell);

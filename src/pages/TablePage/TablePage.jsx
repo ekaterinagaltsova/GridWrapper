@@ -21,7 +21,12 @@ const visualElements = [
   {
     id: 3,
     name: 'Image',
-    text: 'Image',
+    text: 'Picture',
+  },
+  {
+    id: 4,
+    name: 'Video',
+    text: 'videooo',
   },
 ];
 
